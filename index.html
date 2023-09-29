@@ -5,44 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Homer's Web Page</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
     <h1>Homer's Web Page</h1>
     <div id="Curtain"></div>
-    <div class="Stuff">
-        <img src="assets/reloj.gif" style="grid-area: 1/1/1/1">
-        <img src="assets/reloj.gif" style="grid-area: 4/2/4/2">
-        <img src="assets/reloj.gif" style="grid-area: 5/5/5/5">
-        <img src="assets/worm.gif" style="grid-area: 2/1/2/1">
-        <img src="assets/worm.gif" style="grid-area: 5/1/5/1">
-        <img src="assets/worm.gif" style="grid-area: 5/2/5/2">
-        <img src="assets/worm.gif" style="grid-area: 2/4/2/4">
-        <img src="assets/toaster.gif" style="grid-area: 2/2/2/2">
-        <img src="assets/toaster.gif" style="grid-area: 3/1/3/1">
-        <img src="assets/toaster.gif" style="grid-area: 4/4/4/4">
-        <img src="assets/toaster.gif" style="grid-area: 2/5/2/5">
-        <img src="assets/ring.gif" style="grid-area: 4/1/4/1">
-        <img src="assets/ring.gif" style="grid-area: 3/4/3/4">
-        <img src="assets/mouth.gif" style="grid-area: 3/2/3/2">
-        <img src="assets/mouth.gif" style="grid-area: 3/5/3/5">
-        <img src="assets/jesus.gif" style="grid-area: 2/3/4/3">
+    <div id="app"></div>
+    <div class="app">
+        <button onclick="Hola()">Sonido</button>
+        <p>© 2023 FEDIANSOFT</p>
     </div>
-    <footer id="app"></footer>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!--<footer id="app"></footer>-->
+    <script type="text/javascript">
+        function Hola() {
+            var sonido = new Audio('assets/backsound.mp3');
+            sonido.play();
+        }
+    </script>
     <!-- Babel Script -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/jsx">
         const app = document.getElementById('app');
 
-        function Credits() {
+        function ClockAppear() {
+            const coordinates = ['1/1/1/1', '4/2/4/2', '5/5/5/5'];
+            return (
+                coordinates.map((coord) => ( <img key = {coord} src="assets/reloj.gif" style={{ gridArea : coord }} /> ))
+            );
+        }
+
+        function WormAppear() {
+            const coordinates = ['2/1/2/1', '5/1/5/1', '5/2/5/2', '2/4/2/4'];
+            return (
+                coordinates.map((coord) => ( <img key= {coord} src="assets/worm.gif" style={{ gridArea : coord }} /> ))
+            );
+        }
+
+        function ToasterAppear() {
+            const coordinates = ['2/2/2/2', '3/1/3/1', '4/4/4/4', '2/5/2/5'];
+            return (
+                coordinates.map((coord) => ( <img key= {coord} src="assets/toaster.gif" style={{ gridArea : coord }} /> ))
+            );
+        }
+
+        function RingAppear() {
+            const coordinates = ['4/1/4/1', '3/4/3/4'];
+            return (
+                coordinates.map((coord) => ( <img key= {coord} src="assets/ring.gif" style={{ gridArea : coord }} /> ))
+            );
+        }
+
+        function MouthAppear() {
+            const coordinates = ['3/2/3/2', '3/5/3/5'];
+            return (
+                coordinates.map((coord) => ( <img key= {coord} src="assets/mouth.gif" style={{ gridArea : coord }} /> ))
+            );
+        }
+
+        function Appear() {
 
             return (
-                  <p>© 2023 FEDIANSOFT</p>
+                <div className="Stuff">
+                  <ClockAppear />
+                  <WormAppear />
+                  <ToasterAppear />
+                  <RingAppear />
+                  <MouthAppear />
+                  <img src="assets/jesus.gif" style={{ gridArea : '2/3/4/3' }} />
+                </div>
               );
           }
 
-        ReactDOM.render(<Credits />, app);
+        ReactDOM.render(<Appear />, app);
     </script>
 </body>
 </html>
